@@ -1,6 +1,4 @@
-﻿using System.Xml;
-
-namespace QueueProgram
+﻿namespace QueueProgram
 {
 	class Node<T>
 	{
