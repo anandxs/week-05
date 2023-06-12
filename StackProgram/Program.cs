@@ -12,13 +12,13 @@
 
         public Stack()
         {
-			capacity = 4;
 			top = -1;
+			capacity = 4;
 			arr = new T[capacity];
 			count = 0;
         }
 
-		public void Push(T data)
+        public void Push(T data)
 		{
 			if (top == capacity - 1)
 			{
@@ -64,8 +64,17 @@
 			return false;
 		}
 
+		public void Clear()
+		{
+			top = -1;
+			count = 0;
+		}
+
 		public void Print()
 		{
+			if (count == 0)
+				throw new InvalidOperationException();
+
 			int currIndex = top;
 
 			while (currIndex > -1)
@@ -79,10 +88,12 @@
 		static void Main(string[] args)
 		{
 			Stack<int> s = new Stack<int>();
-            Console.WriteLine(s.Contain(1));
 			s.Push(1);
-			s.Push(10);
-			Console.WriteLine(s.Contain(2));
+			s.Push(2);
+			s.Push(3);
+			s.Print();
+			s.Clear();
+            Console.WriteLine(s.Peek());
         }
 	}
 }
