@@ -1,6 +1,6 @@
 ﻿namespace StackProgram
 {
-	class Stack<T>
+	class ArrayStack<T>
 	{
 		private int top;
 		private T[] arr;
@@ -10,7 +10,7 @@
 		public int Top { get { return top; } }
 		public int Count { get { return count; } }
 
-        public Stack()
+        public ArrayStack()
         {
 			top = -1;
 			capacity = 4;
