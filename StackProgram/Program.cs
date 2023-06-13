@@ -1,4 +1,6 @@
-﻿namespace StackProgram
+﻿using System.Globalization;
+
+namespace StackProgram
 {
 	class ArrayStack<T>
 	{
@@ -86,10 +88,10 @@
 
 	class Node<T>
 	{
-		public T Value;
-		public Node<T> Next;
+		public T Value { get; set; }
+		public Node<T> Next { get; set; }
 
-        public Node(T value)
+		public Node(T value)
         {
 			this.Value = value;
 			this.Next = null;
@@ -98,15 +100,14 @@
 
 	class LinkedListStack<T>
 	{
-		private Node<T>? head;
-		private Node<T>? tail;
+		private Node<T>? top;
 		private int count;
 
 		public int Count { get { return count;  } }
 
         public LinkedListStack()
         {
-			head = tail = null;
+			top = null;
 			count = 0;
         }
 
@@ -114,12 +115,12 @@
 		{
 			Node<T> newNode = new Node<T>(data);
 
-			if (head == null)
-				head = tail = newNode;
+			if (top == null)
+				top = newNode;
 			else
 			{
-				tail.Next = newNode;
-				tail = newNode;
+				newNode.Next = top;
+				top = newNode;
 			}
 
 			count++;
@@ -127,57 +128,65 @@
 
 		public T Peek()
 		{
-			if (head == null)
+			if (top == null)
 				throw new InvalidOperationException();
 
-			return tail.Value;
+			return top.Value;
 		}
 
 		public T Pop()
 		{
-			if (head == null)
+			if (top == null)
 				throw new InvalidOperationException();
 
-			T popValue = tail.Value;
+			T pop = top.Value;
 
-			Node<T> curr = head;
+			Node<T> temp = top;
+			top = top.Next;
+			temp.Next = null;
+			
+			count--;
 
-			while (curr.Next != tail)
+			return pop;
+		}
+
+		public bool Contain(T checkVal)
+		{
+			var curr = top;
+
+			while (curr != null)
 			{
+				if (curr.Value.Equals(checkVal))
+					return true;
+
 				curr = curr.Next;
 			}
 
-			curr.Next = null;
-			tail = curr;
-			count--;
-
-			return popValue;
+			return false;
 		}
 
 		public void Print()
 		{
-			PrintHelper(head);
-        }
+			if (count == 0)
+				throw new InvalidOperationException();
 
-		private void PrintHelper(Node<T>? node)
-		{
-			if (node == null)
-				return;
-			
-			if (node.Next == null)
-                Console.WriteLine(node.Value + " ");
-			else
+			Node<T> curr = top;
+
+			while (curr != null)
 			{
-				PrintHelper(node.Next);
-                Console.WriteLine(node.Value + " ");
-			}
+                Console.WriteLine(curr.Value);
+				curr = curr.Next;
+            }
 		}
-	}
+    }
 
 	internal class Program
 	{
 		static void Main(string[] args)
 		{
+			LinkedListStack<int> s = new LinkedListStack<int>();
+			s.Push(1);
+            Console.WriteLine(s.Contain(1));
         }
 	}
 }
