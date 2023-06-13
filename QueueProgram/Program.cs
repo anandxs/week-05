@@ -2,26 +2,26 @@
 {
 	class Node<T>
 	{
-		public T Value;
-		public Node<T> Next;
+		public T Value { get; set; }
+		public Node<T>? Next { get; set; }
 
-        public Node(T value)
+		public Node(T value)
         {
 			Value = value;
 			Next = null;
         }
     }
-	class Queue<T>
+	class LinkedListQueue<T>
 	{
-		private Node<T> head;
-		private Node<T> tail;
+		private Node<T>? front;
+		private Node<T>? end;
 		private int count;
 
 		public int Count { get { return count; } }
 
-		public Queue()
+		public LinkedListQueue()
         {
-			head = tail = null;
+			front = end = null;
 			count = 0;
         }
 
@@ -29,12 +29,12 @@
 		{
 			Node<T> newNode = new Node<T>(data);
 
-			if (tail == null)
-				head = tail = newNode;
+			if (end == null)
+				front = end = newNode;
 			else
 			{
-				tail.Next = newNode;
-				tail = newNode;
+				end.Next = newNode;
+				end = newNode;
 			}
 
 			count++;
@@ -42,17 +42,17 @@
 
 		public T Dequeue()
 		{
-			if (head == null)
+			if (front == null)
 				throw new InvalidOperationException();
 
-			T pop = head.Value;
+			T pop = front.Value;
 
-			if (head.Next == null)
-				head = tail = null;
+			if (front.Next == null)
+				front = end = null;
 			else
 			{
-				Node<T> temp = head;
-				head = head.Next;
+				Node<T> temp = front;
+				front = front.Next;
 				temp.Next = null;
 			}
 
@@ -61,9 +61,17 @@
 			return pop;
 		}
 
+		public T Peek()
+		{
+			if (front == null)
+				throw new InvalidOperationException("Empty queue");
+
+			return front.Value;
+		}
+
 		public bool Contain(T data)
 		{
-			var curr = head;
+			var curr = front;
 
 			while(curr != null)
 			{
@@ -78,7 +86,7 @@
 
 		public void Clear()
 		{
-			while (head != null)
+			while (front != null)
 			{
 				Dequeue();
 			}
@@ -89,7 +97,7 @@
 			if (count == 0)
 				throw new InvalidOperationException();
 
-            Node<T> curr = head;
+            Node<T> curr = front;
 
 			while (curr != null)
 			{
@@ -103,7 +111,6 @@
 	{
 		static void Main(string[] args)
 		{
-			Queue<int> q = new Queue<int>();
         }
 	}
 }
