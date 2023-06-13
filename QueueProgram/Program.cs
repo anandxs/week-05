@@ -129,9 +129,13 @@
 		public void Enqueue(T data)
 		{
 			if (rear == capacity - 1)
-				throw new InvalidOperationException("Queue full");
-
-			if (rear == -1)
+			{
+				capacity *= 2;
+				var temp = new T[capacity];
+				arr.CopyTo(temp, 0);
+				arr = temp;
+			}
+			else if (rear == -1)
 			{
 				front = 0;
 			}
@@ -210,7 +214,6 @@
 	{
 		static void Main(string[] args)
 		{
-			var q = new ArrayQueue<int>();
 		}
 	}
 }
