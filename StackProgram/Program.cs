@@ -98,9 +98,11 @@
 
 	class LinkedListStack<T>
 	{
-		private Node<T> head;
-		private Node<T> tail;
+		private Node<T>? head;
+		private Node<T>? tail;
 		private int count;
+
+		public int Count { get { return count;  } }
 
         public LinkedListStack()
         {
@@ -122,12 +124,60 @@
 
 			count++;
 		}
-    }
+
+		public T Peek()
+		{
+			if (head == null)
+				throw new InvalidOperationException();
+
+			return tail.Value;
+		}
+
+		public T Pop()
+		{
+			if (head == null)
+				throw new InvalidOperationException();
+
+			T popValue = tail.Value;
+
+			Node<T> curr = head;
+
+			while (curr.Next != tail)
+			{
+				curr = curr.Next;
+			}
+
+			curr.Next = null;
+			tail = curr;
+			count--;
+
+			return popValue;
+		}
+
+		public void Print()
+		{
+			PrintHelper(head);
+        }
+
+		private void PrintHelper(Node<T>? node)
+		{
+			if (node == null)
+				return;
+			
+			if (node.Next == null)
+                Console.WriteLine(node.Value + " ");
+			else
+			{
+				PrintHelper(node.Next);
+                Console.WriteLine(node.Value + " ");
+			}
+		}
+	}
 
 	internal class Program
 	{
 		static void Main(string[] args)
 		{
-        }
+		}
 	}
 }
