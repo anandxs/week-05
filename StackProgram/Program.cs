@@ -83,6 +83,47 @@
             }
 		}
 	}
+
+	class Node<T>
+	{
+		public T Value;
+		public Node<T> Next;
+
+        public Node(T value)
+        {
+			this.Value = value;
+			this.Next = null;
+        }
+    }
+
+	class LinkedListStack<T>
+	{
+		private Node<T> head;
+		private Node<T> tail;
+		private int count;
+
+        public LinkedListStack()
+        {
+			head = tail = null;
+			count = 0;
+        }
+
+		public void Push(T data)
+		{
+			Node<T> newNode = new Node<T>(data);
+
+			if (head == null)
+				head = tail = newNode;
+			else
+			{
+				tail.Next = newNode;
+				tail = newNode;
+			}
+
+			count++;
+		}
+    }
+
 	internal class Program
 	{
 		static void Main(string[] args)
