@@ -141,6 +141,29 @@
 			count++;
 		}
 
+		public T Dequeue()
+		{
+			if (front == -1)
+				throw new InvalidOperationException("Queue is empty. Nothing to remove.");
+
+			T pop = arr[front];
+
+			if (front == rear)
+				front = rear = -1;
+			else
+			{
+				for (int i = 1; i <= rear; i++)
+				{
+					arr[i - 1] = arr[i];
+				}
+				rear--;
+			}
+
+			count--;
+
+			return pop;
+		}
+
 		public T Peek()
 		{
 			if (front == -1)
@@ -149,13 +172,32 @@
 			return arr[front];
 		}
 
+		public bool Cont	ain(T checkVal)
+		{
+			if (front == -1)
+				return false;
+
+			for (int i = front; i <= rear; i++)
+			{
+				if (arr[i].Equals(checkVal))
+					return true;
+			}
+
+			return false;
+		}
+
 		public void Print()
 		{
+			if (count == 0)
+				throw new InvalidOperationException("Queue is empty.");
+
 			for (int i = front; i <= rear; i++)
 			{
 				Console.Write(arr[i] + " ");
             }
-		}
+
+            Console.WriteLine();
+        }
     }
 
 	internal class Program
@@ -163,10 +205,6 @@
 		static void Main(string[] args)
 		{
 			var q = new ArrayQueue<int>();
-			q.Enqueue(2);
-			q.Enqueue(3);
-			q.Enqueue(4);
-            Console.WriteLine(q.Peek());
-        }
+		}
 	}
 }
