@@ -172,7 +172,7 @@
 			return arr[front];
 		}
 
-		public bool Cont	ain(T checkVal)
+		public bool Contain(T checkVal)
 		{
 			if (front == -1)
 				return false;
@@ -184,6 +184,12 @@
 			}
 
 			return false;
+		}
+
+		public void Clear()
+		{
+			front = rear = -1;
+			count = 0;
 		}
 
 		public void Print()
