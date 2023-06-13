@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace StackProgram
+﻿namespace StackProgram
 {
 	class ArrayStack<T>
 	{
