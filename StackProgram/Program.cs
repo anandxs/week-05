@@ -165,6 +165,14 @@ namespace StackProgram
 			return false;
 		}
 
+		public void Clear()
+		{
+			while (top != null)
+			{
+				Pop();
+			}
+		}
+
 		public void Print()
 		{
 			if (count == 0)
@@ -184,9 +192,6 @@ namespace StackProgram
 	{
 		static void Main(string[] args)
 		{
-			LinkedListStack<int> s = new LinkedListStack<int>();
-			s.Push(1);
-            Console.WriteLine(s.Contain(1));
-        }
+		}
 	}
 }
