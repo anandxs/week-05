@@ -11,6 +11,7 @@
 			Next = null;
         }
     }
+
 	class LinkedListQueue<T>
 	{
 		private Node<T>? front;
@@ -107,10 +108,59 @@
 		}
     }
 
+	class ArrayQueue<T>
+	{
+		private int front;
+		private int rear;
+		private int count;
+		private T[] arr;
+		private int capacity;
+
+		public int Count { get { return count; } }
+
+        public ArrayQueue()
+        {
+			front = rear = -1;
+			count = 0;
+			capacity = 4;
+			arr = new T[capacity];
+        }
+
+		public void Enqueue(T data)
+		{
+			if (rear == capacity - 1)
+				throw new InvalidOperationException("Queue full");
+
+			if (rear == -1)
+			{
+				front = 0;
+			}
+
+			rear++;
+			arr[rear] = data;
+			count++;
+		}
+
+		public void Print()
+		{
+			for (int i = front; i <= rear; i++)
+			{
+				Console.Write(arr[i] + " ");
+            }
+		}
+    }
+
 	internal class Program
 	{
 		static void Main(string[] args)
 		{
-        }
+			var q = new ArrayQueue<int>();
+			q.Enqueue(1);
+			q.Enqueue(2);
+			q.Enqueue(3);
+			q.Enqueue(4);
+			q.Print();
+			q.Enqueue(1);
+		}
 	}
 }
