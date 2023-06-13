@@ -141,6 +141,14 @@
 			count++;
 		}
 
+		public T Peek()
+		{
+			if (front == -1)
+				throw new InvalidOperationException("Queue empty");
+
+			return arr[front];
+		}
+
 		public void Print()
 		{
 			for (int i = front; i <= rear; i++)
@@ -155,12 +163,10 @@
 		static void Main(string[] args)
 		{
 			var q = new ArrayQueue<int>();
-			q.Enqueue(1);
 			q.Enqueue(2);
 			q.Enqueue(3);
 			q.Enqueue(4);
-			q.Print();
-			q.Enqueue(1);
-		}
+            Console.WriteLine(q.Peek());
+        }
 	}
 }
