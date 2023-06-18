@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeSortProgram", "MergeSo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickSortProgram", "QuickSortProgram\QuickSortProgram.csproj", "{4AA74F1F-BE8F-43EB-806E-8CF4DA341FEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hashtable", "Hashtable\Hashtable.csproj", "{72F9B611-4310-4289-9C72-E5542FF4F1F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{4AA74F1F-BE8F-43EB-806E-8CF4DA341FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AA74F1F-BE8F-43EB-806E-8CF4DA341FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AA74F1F-BE8F-43EB-806E-8CF4DA341FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72F9B611-4310-4289-9C72-E5542FF4F1F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F9B611-4310-4289-9C72-E5542FF4F1F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F9B611-4310-4289-9C72-E5542FF4F1F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F9B611-4310-4289-9C72-E5542FF4F1F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
