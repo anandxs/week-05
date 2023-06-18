@@ -118,6 +118,25 @@
 			count--;
 		}
 
+		public bool ContainsKey(int key)
+		{
+			int position = HashCode(key);
+			var bucket = buckets[position];
+
+			if (bucket == null)
+				return false;
+			else
+			{
+				while(bucket != null)
+				{
+					if (bucket.Key == key)
+						return true;
+					bucket = bucket.Next;
+				}
+				return false;
+			}
+		}
+
 		public void Print()
 		{
             Console.WriteLine($"{"Key", -5}{"Value", -6}");
@@ -140,14 +159,6 @@
 	{
 		static void Main(string[] args)
 		{
-			HashTable<int> t = new HashTable<int>();
-
-			for (int i = 0; i < 20; i++)
-			{
-				t.Add(i, 1000 + i);
-			}
-
-			t.Print();
         }
 	}
 }
