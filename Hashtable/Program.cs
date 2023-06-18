@@ -117,18 +117,37 @@
 
 			count--;
 		}
+
+		public void Print()
+		{
+            Console.WriteLine($"{"Key", -5}{"Value", -6}");
+
+			foreach (var bucket in buckets)
+			{
+				if (bucket == null)
+					continue;
+
+				var curr = bucket;
+                while (curr != null)
+				{
+					Console.WriteLine($"{curr.Key, -5}{curr.Value, -6}");
+					curr = curr.Next;
+				}
+			}
+		}
 	}
 	internal class Program
 	{
 		static void Main(string[] args)
 		{
-			HashTable<string> t = new HashTable<string>();
-			t.Add(1, "Anand");
-			t.Add(6, "Anjali");
-			t.Add(11, "as");
-			t.Remove(1);
-			t.Remove(11);
-            Console.WriteLine(t.Get(6));
+			HashTable<int> t = new HashTable<int>();
+
+			for (int i = 0; i < 20; i++)
+			{
+				t.Add(i, 1000 + i);
+			}
+
+			t.Print();
         }
 	}
 }
