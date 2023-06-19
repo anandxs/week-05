@@ -2,11 +2,11 @@
 {
 	class Node<T>
 	{
-		public int Key { get; set; }
+		public string Key { get; set; }
 		public T Value { get; set; }
 		public Node<T> Next { get; set; }
 
-        public Node(int key, T value)
+        public Node(string key, T value)
         {
 			Key = key;
 			Value = value;
@@ -26,12 +26,19 @@
 			count = 0;
         }
 
-		private int HashCode(int key)
+		private int HashCode(string key)
 		{
-			return key % buckets.Length;
+			int num = 0;
+
+			for (int i = 0; i < key.Length; i++)
+			{
+				num += (int)key[i]; 
+			}
+
+			return (num * 13) % buckets.Length;
 		}
 
-		public void Add(int key, T value)
+		public void Put(string key, T value)
 		{
 			var node = new Node<T>(key, value);
 			int position = HashCode(key);
@@ -61,7 +68,7 @@
 			count++;
 		}
 
-		public T Get(int key)
+		public T Get(string key)
 		{
 			int position = HashCode(key);
 			Node<T> bucket = buckets[position];
@@ -84,7 +91,7 @@
 			}
 		}
 
-		public void Remove(int key)
+		public void Remove(string key)
 		{
 			int position = HashCode(key);
 			var bucket = buckets[position];
@@ -118,7 +125,7 @@
 			count--;
 		}
 
-		public bool ContainsKey(int key)
+		public bool ContainsKey(string key)
 		{
 			int position = HashCode(key);
 			var bucket = buckets[position];
@@ -139,7 +146,7 @@
 
 		public void Print()
 		{
-            Console.WriteLine($"{"Key", -5}{"Value", -6}");
+            Console.WriteLine($"{"Key", -10}{"Value", -6}");
 
 			foreach (var bucket in buckets)
 			{
@@ -149,7 +156,7 @@
 				var curr = bucket;
                 while (curr != null)
 				{
-					Console.WriteLine($"{curr.Key, -5}{curr.Value, -6}");
+					Console.WriteLine($"{curr.Key, -10}{curr.Value, -6}");
 					curr = curr.Next;
 				}
 			}
@@ -159,6 +166,12 @@
 	{
 		static void Main(string[] args)
 		{
-        }
+			var t = new HashTable<int>();
+			t.Put("HI", 1);
+			t.Put("HI", 1);
+			t.Put("HIasdfsa", 1);
+			t.Put("HIsdfsdf", 1);
+			t.Print();
+		}
 	}
 }
