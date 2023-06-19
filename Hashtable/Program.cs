@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Hashtable
+﻿namespace Hashtable
 {
 	class Node<T>
 	{
