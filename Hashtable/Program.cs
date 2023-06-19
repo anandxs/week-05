@@ -1,4 +1,6 @@
-﻿namespace Hashtable
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Hashtable
 {
 	class Node<T>
 	{
@@ -53,7 +55,12 @@
 
 				while (true)
 				{
-					if (temp.Next == null)
+					if (temp.Key == key)
+					{
+						temp.Value = value;
+						break;
+					}
+					else if (temp.Next == null)
 					{
 						temp.Next = node;
 						break;
@@ -168,7 +175,7 @@
 		{
 			var t = new HashTable<int>();
 			t.Put("HI", 1);
-			t.Put("HI", 1);
+			t.Put("HI", 123423);
 			t.Put("HIasdfsa", 1);
 			t.Put("HIsdfsdf", 1);
 			t.Print();
