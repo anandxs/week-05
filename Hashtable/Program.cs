@@ -20,7 +20,7 @@
 
 		public int Count { get { return count; } }
 
-        public HashTable(int size = 5)
+        public HashTable(int size = 104729)
         {
 			buckets = new Node<T>[size];
 			count = 0;
@@ -32,7 +32,7 @@
 
 			for (int i = 0; i < key.Length; i++)
 			{
-				num += (int)key[i]; 
+				num += (int)key[i] * i; 
 			}
 
 			return (num * 13) % buckets.Length;
@@ -171,12 +171,6 @@
 	{
 		static void Main(string[] args)
 		{
-			var t = new HashTable<int>();
-			t.Put("HI", 1);
-			t.Put("HI", 123423);
-			t.Put("HIasdfsa", 1);
-			t.Put("HIsdfsdf", 1);
-			t.Print();
 		}
 	}
 }
